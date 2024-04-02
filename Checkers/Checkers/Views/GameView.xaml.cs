@@ -23,6 +23,27 @@ namespace Checkers.Views
         public GameView()
         {
             InitializeComponent();
+            CreateCheckerboard();
+        }
+
+        private void CreateCheckerboard()
+        {
+            const int rows = 8;
+            const int columns = 8;
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Button button = new Button();
+                    button.Background = (i + j) % 2 == 0 ? Brushes.White : Brushes.Black;
+
+                    Grid.SetRow(button, i);
+                    Grid.SetColumn(button, j);
+
+                    MainGrid.Children.Add(button);
+                }
+            }
         }
     }
 }
