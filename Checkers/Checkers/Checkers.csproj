@@ -55,6 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enums\PieceColor.cs" />
+    <Compile Include="Enums\PieceType.cs" />
+    <Compile Include="Enums\TileColor.cs" />
+    <Compile Include="Models\Tile.cs" />
+    <Compile Include="Services\ImagePickerService.cs" />
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>
@@ -102,7 +107,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
