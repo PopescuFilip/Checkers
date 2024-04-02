@@ -17,14 +17,15 @@ namespace Checkers.Services
         private const string RedPiece = "checker_piece_red.jpq";
         public static string GetImage(Tile tile)
         {
-            if(!tile.HasPiece)
-            {
-                if(tile.TileColor == Enums.TileColor.White)
-                    return GetWhiteTile();
+            if(tile.TileColor == Enums.TileColor.Black) 
                 return GetBlackTile();
-            }
-            if(tile.PieceColor == Enums.PieceColor.White)
+
+            if(!tile.HasPiece)
+                return GetWhiteTile();
+
+            if (tile.PieceColor == Enums.PieceColor.White)
                 return GetWhitePiece();
+
             return GetRedPiece();
         }
         private static string GetWhiteTile()
