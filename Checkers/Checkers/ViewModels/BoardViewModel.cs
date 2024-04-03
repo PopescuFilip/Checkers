@@ -15,8 +15,21 @@ namespace Checkers.ViewModels
     public class BoardViewModel: BaseViewModel
     {
         public ObservableCollection<ObservableCollection<Tile>> Board { get; set; }
+        private Enums.Color _currentPlayer;
+        public Enums.Color CurrentPlayer
+        {
+            get { return _currentPlayer; }
+            set 
+            { 
+                _currentPlayer = value;
+                OnPropertyChanged(nameof(CurrentPlayer));
+            }
+        }
+
         public BoardViewModel() 
         {
+            CurrentPlayer = Enums.Color.Red;
+
             Board = new ObservableCollection<ObservableCollection<Tile>>();
 
             for (int i = 0; i < Models.Board.Rows; i++)
