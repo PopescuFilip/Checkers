@@ -12,16 +12,17 @@ namespace Checkers.Models
     public class Tile
     {
         public Piece Piece {  get; set; }
-        public Color TileColor { get; }
         public bool HasPiece { get; set; }
-        public int X { get; }
-        public int Y { get; }
         public string Image {  get; set; }
+        public Color TileColor { get; }
+
+        private readonly Position _positon;
+        public int X { get { return _positon.X; } }
+        public int Y { get { return _positon.Y; } }
 
         public Tile(int x, int y)
         {
-            X = x;
-            Y = y;
+            _positon = new Position(x, y);
             TileColor = (x + y) % 2 == 0 ? Color.White : Color.Black;
             InitPiece();
 
