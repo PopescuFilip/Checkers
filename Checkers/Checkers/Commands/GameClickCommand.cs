@@ -10,11 +10,11 @@ namespace Checkers.Commands
 {
     public class GameClickCommand : CommandBase
     {
-        private BoardViewModel _boardViewModel;
+        private BoardViewModel _board;
         private Tile _tile;
         public GameClickCommand(BoardViewModel board, Tile tile) 
         {
-            _boardViewModel = board;
+            _board = board;
             _tile = tile;
         }
         public override void Execute(object parameter)
@@ -24,7 +24,7 @@ namespace Checkers.Commands
 
         public override bool CanExecute(object parameter)
         {
-            return base.CanExecute(parameter);
+            return _tile.HasPiece && _tile.Piece.Color == _board.CurrentPlayer && base.CanExecute(parameter);
         }
 
     }
