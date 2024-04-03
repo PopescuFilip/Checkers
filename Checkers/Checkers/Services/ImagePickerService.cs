@@ -23,7 +23,7 @@ namespace Checkers.Services
             if(!tile.HasPiece)
                 return GetWhiteTile();
 
-            if (tile.PieceColor == Enums.PieceColor.White)
+            if (tile.Piece.PieceColor == Enums.PieceColor.White)
                 return GetWhitePiece();
 
             return GetRedPiece();
