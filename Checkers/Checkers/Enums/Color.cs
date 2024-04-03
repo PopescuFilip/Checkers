@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Checkers.Enums
 {
-    public enum PieceColor
+    public enum Color
     {
         White,
         Red,

@@ -9,15 +9,15 @@ namespace Checkers.Models
 {
     public class Piece
     {
-        public PieceColor PieceColor { get; set; }
+        public Color PieceColor { get; set; }
         public PieceType PieceType { get; set; }
         public Piece() 
         {
-            PieceColor = PieceColor.None;
+            PieceColor = Color.None;
             PieceType = PieceType.None;
         }
 
-        public Piece(PieceColor pieceColor)
+        public Piece(Color pieceColor)
         {
             PieceColor = pieceColor;
             PieceType = PieceType.Normal;

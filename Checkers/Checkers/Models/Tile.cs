@@ -37,9 +37,9 @@ namespace Checkers.Models
             else 
             {
                 if (X < 3)
-                    Piece = new Piece(PieceColor.White);
+                    Piece = new Piece(Color.White);
                 else
-                    Piece = new Piece(PieceColor.Red);
+                    Piece = new Piece(Color.Red);
                 HasPiece = true;
             }
         }

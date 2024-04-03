@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Enums\PieceColor.cs" />
+    <Compile Include="Enums\Color.cs" />
     <Compile Include="Enums\PieceType.cs" />
     <Compile Include="Enums\TileColor.cs" />
     <Compile Include="Models\Board.cs" />

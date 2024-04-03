@@ -32,13 +32,13 @@ namespace Checkers.Services
         {
             if(tile.Piece.PieceType == Enums.PieceType.Normal)
             {
-                if (tile.Piece.PieceColor == Enums.PieceColor.White)
+                if (tile.Piece.PieceColor == Enums.Color.White)
                     return GetWhitePiece();
 
                 return GetRedPiece();
             }
 
-            if (tile.Piece.PieceColor == Enums.PieceColor.White)
+            if (tile.Piece.PieceColor == Enums.Color.White)
                 return GetKingWhitePiece();
 
             return GetKingRedPiece();
