@@ -24,7 +24,7 @@ namespace Checkers
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            _navigationStore.CurrentViewModel = new BoardViewModel();
+            _navigationStore.CurrentViewModel = new GameViewModel();
 
             MainWindow = new MainWindow()
             {

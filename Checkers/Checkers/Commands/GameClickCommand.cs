@@ -10,9 +10,9 @@ namespace Checkers.Commands
 {
     public class GameClickCommand : CommandBase
     {
-        private BoardViewModel _board;
+        private GameViewModel _board;
         private Tile _tile;
-        public GameClickCommand(BoardViewModel board, Tile tile) 
+        public GameClickCommand(GameViewModel board, Tile tile) 
         {
             _board = board;
             _tile = tile;

@@ -5,53 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Checkers.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="800">
-    <!--<Grid Name="MainGrid" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="400"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
-    </Grid>-->
-    <ItemsControl Name="grid" ItemsSource="{Binding Board}" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <ItemsControl ItemsSource="{Binding}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="2" BorderBrush="Black" Width="50" Height="50">
-                                <Button Command="{Binding GameClick}">
-                                    <Button.Template>
-                                        <ControlTemplate>
-                                            <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
-                                        </ControlTemplate>
-                                    </Button.Template>
-                                </Button>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+        <Grid Grid.Row="1">
+            <ItemsControl Name="grid" ItemsSource="{Binding Board}" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderThickness="2" BorderBrush="Black" Width="50" Height="50">
+                                        <Button Command="{Binding GameClick}">
+                                            <Button.Template>
+                                                <ControlTemplate>
+                                                    <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Grid>
+    </Grid>
+    
+    
 </UserControl>

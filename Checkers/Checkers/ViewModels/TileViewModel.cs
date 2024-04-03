@@ -24,7 +24,7 @@ namespace Checkers.ViewModels
         }
 
         public ICommand GameClick { get; }
-        public TileViewModel(BoardViewModel board, Tile tile) 
+        public TileViewModel(GameViewModel board, Tile tile) 
         {
             Tile = tile;
             GameClick = new GameClickCommand(board, tile);
