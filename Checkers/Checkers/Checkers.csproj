@@ -60,8 +60,10 @@
     <Compile Include="Enums\TileColor.cs" />
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Services\ImagePickerService.cs" />
+    <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\GameView.xaml.cs">
       <DependentUpon>GameView.xaml</DependentUpon>
     </Compile>

@@ -30,7 +30,7 @@ namespace Checkers.Models
         }
         private void InitPiece()
         {
-            if (X >= 2 && Y <= 5 || TileColor == TileColor.Black)
+            if (X >= 3 && X <= 4 || TileColor == TileColor.Black)
             {
                 PieceColor = PieceColor.None;
                 PieceType = PieceType.None;
@@ -38,7 +38,7 @@ namespace Checkers.Models
             }
             else 
             {
-                if (X < 2)
+                if (X < 3)
                     PieceColor = PieceColor.White;
                 else
                     PieceColor = PieceColor.Red;

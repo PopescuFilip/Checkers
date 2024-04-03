@@ -14,16 +14,19 @@ namespace Checkers.ViewModels
 {
     public class BoardViewModel: BaseViewModel
     {
+        public const int Rows = 8;
+        public const int Cols = 8;
         public ObservableCollection<ObservableCollection<Tile>> Board { get; set; }
         public BoardViewModel() 
         {
             Board = new ObservableCollection<ObservableCollection<Tile>>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < Rows; i++)
             {
-                Board[i] = new ObservableCollection<Tile>();
-                for (int j = 0; j < 8; j++)
-                    Board[i][j] = new Tile(i, j);
+                ObservableCollection<Tile> row = new ObservableCollection<Tile>();
+                for (int j = 0; j < Cols; j++)
+                    row.Add(new Tile(i, j));
+                Board.Add(row);
             }
         }
     }

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Checkers.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Name="MainGrid" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+             d:DesignHeight="550" d:DesignWidth="800">
+    <!--<Grid Name="MainGrid" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -27,5 +27,31 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-    </Grid>
+    </Grid>-->
+    <ItemsControl Name="grid" ItemsSource="{Binding Board}" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <ItemsControl ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2" BorderBrush="Black" Width="50" Height="50">
+                                <Button Click="Button_Click">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
 </UserControl>

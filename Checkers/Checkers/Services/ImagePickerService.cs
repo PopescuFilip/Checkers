@@ -11,10 +11,10 @@ namespace Checkers.Services
     public class ImagePickerService
     {
         private const string DefaultPath = "/Checkers;component/Resources/";
-        private const string BlackTile = "black.jpq";
-        private const string WhiteTile = "white.jpq";
-        private const string WhitePiece = "checker_piece_white.jpq";
-        private const string RedPiece = "checker_piece_red.jpq";
+        private const string BlackTile = "black.jpg";
+        private const string WhiteTile = "white.jpg";
+        private const string WhitePiece = "checker_piece_white.jpg";
+        private const string RedPiece = "checker_piece_red.jpg";
         public static string GetImage(Tile tile)
         {
             if(tile.TileColor == Enums.TileColor.Black) 
