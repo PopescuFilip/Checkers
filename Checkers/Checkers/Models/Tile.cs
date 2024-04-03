@@ -11,8 +11,7 @@ namespace Checkers.Models
 {
     public class Tile
     {
-        public PieceColor PieceColor { get; set; }
-        public PieceType PieceType { get; set; }
+        public Piece Piece {  get; set; }
         public TileColor TileColor { get; }
         public bool HasPiece { get; set; }
         public int X { get; }
@@ -32,18 +31,15 @@ namespace Checkers.Models
         {
             if (X >= 3 && X <= 4 || TileColor == TileColor.Black)
             {
-                PieceColor = PieceColor.None;
-                PieceType = PieceType.None;
+                Piece = new Piece();
                 HasPiece = false;
             }
             else 
             {
                 if (X < 3)
-                    PieceColor = PieceColor.White;
+                    Piece = new Piece(PieceColor.White);
                 else
-                    PieceColor = PieceColor.Red;
-
-                PieceType = PieceType.Normal;
+                    Piece = new Piece(PieceColor.Red);
                 HasPiece = true;
             }
         }
