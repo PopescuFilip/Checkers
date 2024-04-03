@@ -14,7 +14,7 @@ namespace Checkers.ViewModels
 {
     public class BoardViewModel: ViewModelBase
     {
-        public ObservableCollection<ObservableCollection<Tile>> Board { get; set; }
+        public ObservableCollection<ObservableCollection<TileViewModel>> Board { get; set; }
         private Enums.Color _currentPlayer;
         public Enums.Color CurrentPlayer
         {
@@ -30,13 +30,13 @@ namespace Checkers.ViewModels
         {
             CurrentPlayer = Enums.Color.Red;
 
-            Board = new ObservableCollection<ObservableCollection<Tile>>();
+            Board = new ObservableCollection<ObservableCollection<TileViewModel>>();
 
             for (int i = 0; i < Models.Board.Rows; i++)
             {
-                ObservableCollection<Tile> row = new ObservableCollection<Tile>();
+                ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
                 for (int j = 0; j < Models.Board.Cols; j++)
-                    row.Add(Models.Board.BoardMatrix[i,j]);
+                    row.Add(new TileViewModel(this, Models.Board.BoardMatrix[i,j]));
                 Board.Add(row);
             }
         }

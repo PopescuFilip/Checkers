@@ -40,10 +40,10 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border BorderThickness="2" BorderBrush="Black" Width="50" Height="50">
-                                <Button>
+                                <Button Command="{Binding GameClick}">
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Image Source="{Binding Image}" Stretch="UniformToFill"/>
+                                            <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>

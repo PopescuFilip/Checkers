@@ -56,6 +56,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\GameClickCommand.cs" />
     <Compile Include="Enums\Color.cs" />
     <Compile Include="Enums\PieceType.cs" />
     <Compile Include="Models\Board.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Services\ImagePickerService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
+    <Compile Include="ViewModels\TileViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
