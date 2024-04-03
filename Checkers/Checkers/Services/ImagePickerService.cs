@@ -15,6 +15,8 @@ namespace Checkers.Services
         private const string WhiteTile = "white.jpg";
         private const string WhitePiece = "checker_piece_white.jpg";
         private const string RedPiece = "checker_piece_red.jpg";
+        private const string KingWhitePiece = "checker_piece_white_king.png";
+        private const string KingRedPiece = "checker_piece_red_king.png";
         public static string GetImage(Tile tile)
         {
             if(tile.TileColor == Enums.TileColor.Black) 
@@ -23,10 +25,23 @@ namespace Checkers.Services
             if(!tile.HasPiece)
                 return GetWhiteTile();
 
-            if (tile.Piece.PieceColor == Enums.PieceColor.White)
-                return GetWhitePiece();
+            return PiecePicker(tile);
+        }
 
-            return GetRedPiece();
+        private static string PiecePicker(Tile tile)
+        {
+            if(tile.Piece.PieceType == Enums.PieceType.Normal)
+            {
+                if (tile.Piece.PieceColor == Enums.PieceColor.White)
+                    return GetWhitePiece();
+
+                return GetRedPiece();
+            }
+
+            if (tile.Piece.PieceColor == Enums.PieceColor.White)
+                return GetKingWhitePiece();
+
+            return GetKingRedPiece();
         }
         private static string GetWhiteTile()
         {
@@ -43,6 +58,15 @@ namespace Checkers.Services
         private static string GetRedPiece() 
         {
             return DefaultPath + RedPiece;
+        }
+
+        private static string GetKingWhitePiece()
+        {
+            return DefaultPath + KingWhitePiece;
+        }
+        private static string GetKingRedPiece()
+        {
+            return DefaultPath + KingRedPiece;
         }
     }
 }
