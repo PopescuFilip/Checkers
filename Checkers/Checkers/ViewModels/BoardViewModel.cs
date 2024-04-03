@@ -12,7 +12,7 @@ using System.Windows.Media;
 
 namespace Checkers.ViewModels
 {
-    public class BoardViewModel: BaseViewModel
+    public class BoardViewModel: ViewModelBase
     {
         public ObservableCollection<ObservableCollection<Tile>> Board { get; set; }
         private Enums.Color _currentPlayer;

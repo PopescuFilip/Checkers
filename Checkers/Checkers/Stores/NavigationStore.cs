@@ -9,8 +9,8 @@ namespace Checkers.Stores
 {
     public class NavigationStore
     {
-        private BaseViewModel _currentViewModel;
-        public BaseViewModel CurrentViewModel
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel
         {
             get => _currentViewModel;
             set
