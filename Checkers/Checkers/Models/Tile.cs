@@ -12,7 +12,7 @@ namespace Checkers.Models
     public class Tile
     {
         public Piece Piece {  get; set; }
-        public TileColor TileColor { get; }
+        public Color TileColor { get; }
         public bool HasPiece { get; set; }
         public int X { get; }
         public int Y { get; }
@@ -22,14 +22,14 @@ namespace Checkers.Models
         {
             X = x;
             Y = y;
-            TileColor = (x + y) % 2 == 0 ? TileColor.White : TileColor.Black;
+            TileColor = (x + y) % 2 == 0 ? Color.White : Color.Black;
             InitPiece();
 
             Image = ImagePickerService.GetImage(this);
         }
         private void InitPiece()
         {
-            if (X >= 3 && X <= 4 || TileColor == TileColor.Black)
+            if (X >= 3 && X <= 4 || TileColor == Color.Black)
             {
                 Piece = new Piece();
                 HasPiece = false;

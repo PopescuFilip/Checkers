@@ -19,7 +19,7 @@ namespace Checkers.Services
         private const string KingRedPiece = "checker_piece_red_king.png";
         public static string GetImage(Tile tile)
         {
-            if(tile.TileColor == Enums.TileColor.Black) 
+            if(tile.TileColor == Enums.Color.Black) 
                 return GetBlackTile();
 
             if(!tile.HasPiece)
