@@ -9,18 +9,18 @@ namespace Checkers.Models
 {
     public class Piece
     {
-        public Color PieceColor { get; set; }
-        public PieceType PieceType { get; set; }
+        public Color Color { get; set; }
+        public Enums.Type Type { get; set; }
         public Piece() 
         {
-            PieceColor = Color.None;
-            PieceType = PieceType.None;
+            Color = Color.None;
+            Type = Enums.Type.None;
         }
 
         public Piece(Color pieceColor)
         {
-            PieceColor = pieceColor;
-            PieceType = PieceType.Normal;
+            Color = pieceColor;
+            Type = Enums.Type.Normal;
         }
     }
 }

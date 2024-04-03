@@ -30,15 +30,15 @@ namespace Checkers.Services
 
         private static string PiecePicker(Tile tile)
         {
-            if(tile.Piece.PieceType == Enums.PieceType.Normal)
+            if(tile.Piece.Type == Enums.Type.Normal)
             {
-                if (tile.Piece.PieceColor == Enums.Color.White)
+                if (tile.Piece.Color == Enums.Color.White)
                     return GetWhitePiece();
 
                 return GetRedPiece();
             }
 
-            if (tile.Piece.PieceColor == Enums.Color.White)
+            if (tile.Piece.Color == Enums.Color.White)
                 return GetKingWhitePiece();
 
             return GetKingRedPiece();
