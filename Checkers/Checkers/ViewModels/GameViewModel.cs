@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -26,9 +27,31 @@ namespace Checkers.ViewModels
             }
         }
 
+        private bool _pickedPiece;
+
+        public bool PickedPiece
+        {
+            get { return _pickedPiece; }
+            set 
+            { 
+                _pickedPiece = value;
+                OnPropertyChanged(nameof(PickedPiece));
+            }
+        }
+
+        public Visibility WhiteTurn
+        {
+            get { return CurrentPlayer == Enums.Color.White ? Visibility.Visible : Visibility.Hidden; }
+        }
+
+        public Visibility RedTurn
+        {
+            get { return CurrentPlayer == Enums.Color.Red ? Visibility.Visible : Visibility.Hidden; }
+        }
         public GameViewModel() 
         {
             CurrentPlayer = Enums.Color.Red;
+            PickedPiece = false;
 
             Board = new ObservableCollection<ObservableCollection<TileViewModel>>();
 
