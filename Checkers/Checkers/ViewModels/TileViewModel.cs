@@ -12,20 +12,11 @@ namespace Checkers.ViewModels
 {
     public class TileViewModel : ViewModelBase
     {
-        private Tile _tile;
-        public bool HasPiece
-        {
-            get
-            {
-                return _tile.HasPiece;
-            }
-        }
+        private readonly Tile _tile;
+        public bool HasPiece => _tile.HasPiece;
         public bool IsAvailable
         {
-            get
-            {
-                return _tile.IsAvailable;
-            }
+            get => _tile.IsAvailable;
             set
             {
                 _tile.IsAvailable = value;
@@ -34,7 +25,7 @@ namespace Checkers.ViewModels
         }
         public Piece Piece
         {
-            get { return _tile.Piece; }
+            get => _tile.Piece;
             set 
             { 
                 _tile.Piece = value; 
@@ -45,18 +36,22 @@ namespace Checkers.ViewModels
 
         public Enums.Color PieceColor
         {
-            get { return _tile.Piece.Color;}
+            get => _tile.Piece.Color;
         }
 
         public string Image
         {
             get => _tile.Image;
-            set { _tile.Image = value; OnPropertyChanged(nameof(Image));}
+            set 
+            { 
+                _tile.Image = value; 
+                OnPropertyChanged(nameof(Image));
+            }
         }
 
         public Position Position
         {
-            get { return _tile.Position; }
+            get => _tile.Position;
         }
 
         public ICommand GameClick { get; }

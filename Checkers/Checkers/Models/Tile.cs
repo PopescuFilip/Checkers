@@ -54,11 +54,6 @@ namespace Checkers.Models
                     Piece = new Piece(Color.Red);
             }
         }
-        //public void SetPiece(Piece piece)
-        //{
-        //    Piece = piece;
-        //    Image = ImagePickerService.GetImage(this);
-        //}
         public List<Position> GetAllPossibleMoves()
         {
             if(Piece.Type == Enums.Type.King)

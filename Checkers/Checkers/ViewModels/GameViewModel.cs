@@ -41,7 +41,6 @@ namespace Checkers.ViewModels
         }
 
         private bool _hasPickedPiece;
-
         public bool HasPickedPiece
         {
             get { return _hasPickedPiece; }
