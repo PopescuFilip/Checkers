@@ -17,11 +17,11 @@ namespace Checkers.Models
             get { return _piece; }
             set 
             {  
-                _piece = value; 
+                _piece = value;
                 Image = ImagePickerService.GetImage(_piece);
             } 
         }
-        public bool HasPiece { get; set; }
+        public bool HasPiece { get { return _piece.Type != Enums.Type.None; } }
         public bool IsAvailable { get; set; }
         public string Image {  get; set; }
         public Color TileColor { get; }
@@ -45,7 +45,6 @@ namespace Checkers.Models
             if (X >= 3 && X <= 4 || TileColor == Color.Black)
             {
                 Piece = new Piece();
-                HasPiece = false;
             }
             else 
             {
@@ -53,7 +52,6 @@ namespace Checkers.Models
                     Piece = new Piece(Color.White);
                 else
                     Piece = new Piece(Color.Red);
-                HasPiece = true;
             }
         }
         //public void SetPiece(Piece piece)

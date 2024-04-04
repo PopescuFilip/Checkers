@@ -52,16 +52,7 @@ namespace Checkers.ViewModels
             }
         }
 
-        private Position _pickedPosition;
-
-        public Position PickedPosition
-        {
-            get { return _pickedPosition; }
-            set 
-            {
-                _pickedPosition = value;
-            }
-        }
+        public Position PickedPosition {  get; set; }
 
 
         public Visibility WhiteTurn

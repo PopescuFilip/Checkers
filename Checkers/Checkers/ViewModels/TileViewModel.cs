@@ -19,12 +19,7 @@ namespace Checkers.ViewModels
             {
                 return _tile.HasPiece;
             }
-            set
-            {
-                _tile.HasPiece = value;
-            }
         }
-
         public bool IsAvailable
         {
             get
@@ -40,7 +35,17 @@ namespace Checkers.ViewModels
         public Piece Piece
         {
             get { return _tile.Piece; }
-            set { _tile.Piece = value; OnPropertyChanged(nameof(Image)); }
+            set 
+            { 
+                _tile.Piece = value; 
+                OnPropertyChanged(nameof(Image)); 
+                OnPropertyChanged(nameof(HasPiece)); 
+            }
+        }
+
+        public Enums.Color PieceColor
+        {
+            get { return _tile.Piece.Color;}
         }
 
         public string Image
@@ -65,12 +70,6 @@ namespace Checkers.ViewModels
             Piece piece = new Piece();
             (Piece, piece) = (piece, Piece);
             return piece;
-        }
-
-        public void PlacePiece(Piece piece)
-        {
-            Piece = piece;
-            HasPiece = true;
         }
         public List<Position> GetAllPossibleMoves()
         {

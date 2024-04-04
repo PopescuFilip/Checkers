@@ -13,10 +13,21 @@ namespace Checkers.Services
     {
         public static void ProcessClick(GameViewModel game, TileViewModel tileVM)
         {
-            if (game.HasPickedPiece)
-                PickSpace(game, tileVM);
-            else
+            if (!game.HasPickedPiece)
+            {
                 PickPiece(game, tileVM);
+                return;
+            }
+                
+            if (tileVM.PieceColor == game.CurrentPlayer)
+            {
+                ResetAvailability(game);
+                PickPiece(game, tileVM);
+                return;
+            }
+
+            PickSpace(game, tileVM);
+
         }
 
         private static void PickSpace(GameViewModel game, TileViewModel tileVM)
@@ -50,7 +61,7 @@ namespace Checkers.Services
 
         private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
-            tileVM.PlacePiece(game.ExtractPickedPiece());
+            tileVM.Piece = game.ExtractPickedPiece();
         }
 
     }

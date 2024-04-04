@@ -19,12 +19,15 @@ namespace Checkers.Commands
             _game = board;
             _tile = tile;
             _game.PropertyChanged += OnViewModelProperyChanged;
+            _tile.PropertyChanged += OnViewModelProperyChanged;
         }
 
         private void OnViewModelProperyChanged(object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == nameof(GameViewModel.CurrentPlayer) ||
-                e.PropertyName == nameof(GameViewModel.HasPickedPiece)) 
+                e.PropertyName == nameof(GameViewModel.HasPickedPiece) ||
+                e.PropertyName == nameof(TileViewModel.IsAvailable) ||
+                e.PropertyName == nameof(TileViewModel.HasPiece)) 
             {
                 OnCanExecutedChanged();
             }
@@ -38,9 +41,13 @@ namespace Checkers.Commands
         public override bool CanExecute(object parameter)
         {
             if(_game.HasPickedPiece)
-                return _tile.IsAvailable && base.CanExecute(parameter);
-            return _tile.HasPiece && _tile.Piece.Color == _game.CurrentPlayer && base.CanExecute(parameter);
+                return (_tile.IsAvailable || IsCurrentPlayerPiece()) && base.CanExecute(parameter);
+            return _tile.HasPiece && IsCurrentPlayerPiece() && base.CanExecute(parameter);
         }
 
+        private bool IsCurrentPlayerPiece()
+        {
+            return _tile.Piece.Color == _game.CurrentPlayer;
+        }
     }
 }
