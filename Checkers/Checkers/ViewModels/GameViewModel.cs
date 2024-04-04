@@ -40,17 +40,29 @@ namespace Checkers.ViewModels
             }
         }
 
-        private bool _pickedPiece;
+        private bool _hasPickedPiece;
 
-        public bool PickedPiece
+        public bool HasPickedPiece
         {
-            get { return _pickedPiece; }
+            get { return _hasPickedPiece; }
             set 
             { 
-                _pickedPiece = value;
-                OnPropertyChanged(nameof(PickedPiece));
+                _hasPickedPiece = value;
+                OnPropertyChanged(nameof(HasPickedPiece));
             }
         }
+
+        private Position _pickedPosition;
+
+        public Position PickedPosition
+        {
+            get { return _pickedPosition; }
+            set 
+            {
+                _pickedPosition = value;
+            }
+        }
+
 
         public Visibility WhiteTurn
         {
@@ -65,17 +77,31 @@ namespace Checkers.ViewModels
         {
             CurrentPlayer = Enums.Color.Red;
             NonCurrentPlayer = Enums.Color.White;
-            PickedPiece = false;
+            HasPickedPiece = false;
 
+            InitBoard();
+        }
+        private void InitBoard()
+        {
             Board = new ObservableCollection<ObservableCollection<TileViewModel>>();
 
             for (int i = 0; i < Models.Board.Rows; i++)
             {
                 ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
                 for (int j = 0; j < Models.Board.Cols; j++)
-                    row.Add(new TileViewModel(this, Models.Board.BoardMatrix[i,j]));
+                    row.Add(new TileViewModel(this, Models.Board.BoardMatrix[i, j]));
                 Board.Add(row);
             }
+        }
+        public void PickPiece(Position pickedPosition)
+        {
+            PickedPosition = pickedPosition;
+            HasPickedPiece = true;
+        }
+
+        public Piece ExtractPickedPiece()
+        {
+            return Board[PickedPosition.X][PickedPosition.Y].ExtractPiece();
         }
     }
 }

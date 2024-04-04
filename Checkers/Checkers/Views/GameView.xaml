@@ -30,11 +30,19 @@
                                     <Border BorderThickness="2" BorderBrush="Black" Width="50" Height="50">
                                         <Button Command="{Binding GameClick}">
                                             <Button.Template>
-                                                <ControlTemplate>
-                                                    <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                                        <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding IsAvailable}" Value="True">
+                                                            <Setter TargetName="border" Property="BorderBrush" Value="Red"/>
+                                                        </DataTrigger>
+                                                    </ControlTemplate.Triggers>
                                                 </ControlTemplate>
                                             </Button.Template>
                                         </Button>
+
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

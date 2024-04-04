@@ -25,20 +25,20 @@ namespace Checkers.Services
             if(!tile.HasPiece)
                 return GetWhiteTile();
 
-            return PiecePicker(tile);
+            return GetImage(tile.Piece);
         }
-
-        private static string PiecePicker(Tile tile)
+ 
+        public static string GetImage(Piece piece)
         {
-            if(tile.Piece.Type == Enums.Type.Normal)
+            if(piece.Type == Enums.Type.Normal)
             {
-                if (tile.Piece.Color == Enums.Color.White)
+                if (piece.Color == Enums.Color.White)
                     return GetWhitePiece();
 
                 return GetRedPiece();
             }
 
-            if (tile.Piece.Color == Enums.Color.White)
+            if (piece.Color == Enums.Color.White)
                 return GetKingWhitePiece();
 
             return GetKingRedPiece();

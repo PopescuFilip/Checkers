@@ -11,8 +11,18 @@ namespace Checkers.Models
 {
     public class Tile
     {
-        public Piece Piece {  get; set; }
+        private Piece _piece;
+        public Piece Piece 
+        { 
+            get { return _piece; }
+            set 
+            {  
+                _piece = value; 
+                Image = ImagePickerService.GetImage(_piece);
+            } 
+        }
         public bool HasPiece { get; set; }
+        public bool IsAvailable { get; set; }
         public string Image {  get; set; }
         public Color TileColor { get; }
 
@@ -25,6 +35,7 @@ namespace Checkers.Models
         {
             _positon = new Position(x, y);
             TileColor = (x + y) % 2 == 0 ? Color.White : Color.Black;
+            IsAvailable = false;
             InitPiece();
 
             Image = ImagePickerService.GetImage(this);
@@ -44,6 +55,49 @@ namespace Checkers.Models
                     Piece = new Piece(Color.Red);
                 HasPiece = true;
             }
+        }
+        //public void SetPiece(Piece piece)
+        //{
+        //    Piece = piece;
+        //    Image = ImagePickerService.GetImage(this);
+        //}
+        public List<Position> GetAllPossibleMoves()
+        {
+            if(Piece.Type == Enums.Type.King)
+                return GetPossibleRedMoves().Concat(GetPossibleWhiteMoves()).ToList();
+
+            if(Piece.Color == Color.White)
+                return GetPossibleWhiteMoves();
+            else
+                return GetPossibleRedMoves();
+        }
+        private List<Position> GetPossibleWhiteMoves()
+        {
+            List<Position> positions = new List<Position>();
+
+            if (X == Board.Rows - 1)
+                return positions;
+            
+            if (Y < Board.Cols - 1)
+                positions.Add(new Position(X + 1, Y + 1));
+            if (Y > 0)
+                positions.Add(new Position(X + 1, Y - 1));
+            
+            return positions;
+        }
+        private List<Position> GetPossibleRedMoves()
+        {
+            List<Position> positions = new List<Position>();
+
+            if (X == 0)
+                return positions;
+
+            if (Y < Board.Cols - 1)
+                positions.Add(new Position(X - 1, Y + 1));
+            if (Y > 0)
+                positions.Add(new Position(X - 1, Y - 1));
+
+            return positions;
         }
     }
 }
