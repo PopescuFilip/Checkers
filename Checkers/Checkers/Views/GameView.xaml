@@ -32,7 +32,7 @@
                                             <Button.Template>
                                                 <ControlTemplate TargetType="Button">
                                                     <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                                        <Image Source="{Binding Tile.Image}" Stretch="UniformToFill"/>
+                                                        <Image Source="{Binding Image}" Stretch="UniformToFill"/>
                                                     </Border>
                                                     <ControlTemplate.Triggers>
                                                         <DataTrigger Binding="{Binding IsAvailable}" Value="True">

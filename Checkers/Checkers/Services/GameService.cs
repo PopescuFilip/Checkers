@@ -11,33 +11,33 @@ namespace Checkers.Services
 {
     public class GameService
     {
-        public static void ProcessClick(GameViewModel game, Tile tile)
+        public static void ProcessClick(GameViewModel game, TileViewModel tileVM)
         {
             if (game.HasPickedPiece)
-                PickSpace(game, tile);
+                PickSpace(game, tileVM);
             else
-                PickPiece(game, tile);
+                PickPiece(game, tileVM);
         }
 
-        private static void PickSpace(GameViewModel game, Tile tile)
+        private static void PickSpace(GameViewModel game, TileViewModel tileVM)
         {
             ResetAvailability(game);
-            MovePiece(game, tile);
+            MovePiece(game, tileVM);
             (game.CurrentPlayer, game.NonCurrentPlayer) = (game.NonCurrentPlayer, game.CurrentPlayer);
             game.HasPickedPiece = false;
         }
-        private static void PickPiece(GameViewModel game, Tile tile)
+        private static void PickPiece(GameViewModel game, TileViewModel tileVM)
         {
-            SetAvailableTiles(game, tile);
-            game.PickPiece(tile.Position);
+            SetAvailableTiles(game, tileVM);
+            game.PickPiece(tileVM.Position);
         }
-        private static void SetAvailableTiles(GameViewModel game, Tile tile)
+        private static void SetAvailableTiles(GameViewModel game, TileViewModel tileVM)
         {
-            foreach (Position item in tile.GetAllPossibleMoves())
+            foreach (Position item in tileVM.GetAllPossibleMoves())
             {
-                TileViewModel tileVM = game.Board[item.X][item.Y];
-                if (!tileVM.HasPiece)
-                    tileVM.IsAvailable = true;
+                TileViewModel tile = game.Board[item.X][item.Y];
+                if (!tile.HasPiece)
+                    tile.IsAvailable = true;
             }
         }
 
@@ -48,10 +48,10 @@ namespace Checkers.Services
                     tile.IsAvailable = false;
         }
 
-        private static void MovePiece(GameViewModel game, Tile tile)
+        private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
             Piece piece = game.ExtractPickedPiece();
-            tile.Piece = piece;
+            tileVM.Piece = piece;
         }
     }
 }

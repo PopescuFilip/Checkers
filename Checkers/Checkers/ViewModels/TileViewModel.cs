@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Checkers.ViewModels
@@ -12,15 +13,6 @@ namespace Checkers.ViewModels
     public class TileViewModel : ViewModelBase
     {
         private Tile _tile;
-        public Tile Tile
-        {
-            get { return _tile; }
-            set
-            {
-                _tile = value;
-                OnPropertyChanged(nameof(Tile));
-            }
-        }
         public bool HasPiece
         {
             get
@@ -29,7 +21,7 @@ namespace Checkers.ViewModels
             }
             set
             {
-                Tile.HasPiece = value;
+                _tile.HasPiece = value;
             }
         }
 
@@ -41,21 +33,43 @@ namespace Checkers.ViewModels
             }
             set
             {
-                Tile.IsAvailable = value;
+                _tile.IsAvailable = value;
                 OnPropertyChanged(nameof(IsAvailable));
             }
         }
+        public Piece Piece
+        {
+            get { return _tile.Piece; }
+            set { _tile.Piece = value; OnPropertyChanged(nameof(Image)); }
+        }
+
+        public string Image
+        {
+            get => _tile.Image;
+            set { _tile.Image = value; OnPropertyChanged(nameof(Image));}
+        }
+
+        public Position Position
+        {
+            get { return _tile.Position; }
+        }
+
         public ICommand GameClick { get; }
         public TileViewModel(GameViewModel board, Tile tile)
         {
-            Tile = tile;
-            GameClick = new GameClickCommand(board, tile);
+            _tile = tile;
+            GameClick = new GameClickCommand(board, this);
         }
         public Piece ExtractPiece()
         {
-            Piece piece = Tile.Piece;
-            Tile.Piece = new Piece();
+            Piece piece = Piece;
+            Piece = new Piece();
             return piece;
+        }
+
+        public List<Position> GetAllPossibleMoves()
+        {
+            return _tile.GetAllPossibleMoves();
         }
     }
 }

@@ -30,6 +30,9 @@ namespace Checkers.Services
  
         public static string GetImage(Piece piece)
         {
+            if(piece.Type == Enums.Type.None)
+                return GetWhiteTile();
+
             if(piece.Type == Enums.Type.Normal)
             {
                 if (piece.Color == Enums.Color.White)

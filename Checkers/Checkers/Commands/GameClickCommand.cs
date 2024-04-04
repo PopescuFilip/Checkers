@@ -13,8 +13,8 @@ namespace Checkers.Commands
     public class GameClickCommand : CommandBase
     {
         private GameViewModel _game;
-        private Tile _tile;
-        public GameClickCommand(GameViewModel board, Tile tile) 
+        private TileViewModel _tile;
+        public GameClickCommand(GameViewModel board, TileViewModel tile) 
         {
             _game = board;
             _tile = tile;
@@ -37,6 +37,7 @@ namespace Checkers.Commands
 
         public override bool CanExecute(object parameter)
         {
+            Console.WriteLine(_tile.HasPiece && _tile.Piece.Color == _game.CurrentPlayer && base.CanExecute(parameter));
             if(_game.HasPickedPiece)
                 return _tile.IsAvailable && base.CanExecute(parameter);
             return _tile.HasPiece && _tile.Piece.Color == _game.CurrentPlayer && base.CanExecute(parameter);
