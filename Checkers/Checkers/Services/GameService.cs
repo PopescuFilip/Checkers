@@ -50,8 +50,8 @@ namespace Checkers.Services
 
         private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
-            Piece piece = game.ExtractPickedPiece();
-            tileVM.Piece = piece;
+            tileVM.PlacePiece(game.ExtractPickedPiece());
         }
+
     }
 }

@@ -62,11 +62,16 @@ namespace Checkers.ViewModels
         }
         public Piece ExtractPiece()
         {
-            Piece piece = Piece;
-            Piece = new Piece();
+            Piece piece = new Piece();
+            (Piece, piece) = (piece, Piece);
             return piece;
         }
 
+        public void PlacePiece(Piece piece)
+        {
+            Piece = piece;
+            HasPiece = true;
+        }
         public List<Position> GetAllPossibleMoves()
         {
             return _tile.GetAllPossibleMoves();

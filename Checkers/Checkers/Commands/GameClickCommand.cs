@@ -37,7 +37,6 @@ namespace Checkers.Commands
 
         public override bool CanExecute(object parameter)
         {
-            Console.WriteLine(_tile.HasPiece && _tile.Piece.Color == _game.CurrentPlayer && base.CanExecute(parameter));
             if(_game.HasPickedPiece)
                 return _tile.IsAvailable && base.CanExecute(parameter);
             return _tile.HasPiece && _tile.Piece.Color == _game.CurrentPlayer && base.CanExecute(parameter);

@@ -103,5 +103,7 @@ namespace Checkers.ViewModels
         {
             return Board[PickedPosition.X][PickedPosition.Y].ExtractPiece();
         }
+
+
     }
 }
