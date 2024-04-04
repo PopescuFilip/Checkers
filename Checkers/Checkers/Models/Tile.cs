@@ -17,6 +17,7 @@ namespace Checkers.Models
         public Color TileColor { get; }
 
         private readonly Position _positon;
+        public Position Position { get { return _positon; } }
         public int X { get { return _positon.X; } }
         public int Y { get { return _positon.Y; } }
 

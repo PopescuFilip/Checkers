@@ -24,6 +24,19 @@ namespace Checkers.ViewModels
             { 
                 _currentPlayer = value;
                 OnPropertyChanged(nameof(CurrentPlayer));
+                OnPropertyChanged(nameof(WhiteTurn));
+                OnPropertyChanged(nameof(RedTurn));
+            }
+        }
+
+        private Enums.Color _nonCurrentPlayer;
+        public Enums.Color NonCurrentPlayer
+        {
+            get { return _nonCurrentPlayer; }
+            set
+            {
+                _nonCurrentPlayer = value;
+                OnPropertyChanged(nameof(NonCurrentPlayer));
             }
         }
 
@@ -51,6 +64,7 @@ namespace Checkers.ViewModels
         public GameViewModel() 
         {
             CurrentPlayer = Enums.Color.Red;
+            NonCurrentPlayer = Enums.Color.White;
             PickedPiece = false;
 
             Board = new ObservableCollection<ObservableCollection<TileViewModel>>();

@@ -2,6 +2,7 @@
 using Checkers.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,10 +17,20 @@ namespace Checkers.Commands
         {
             _board = board;
             _tile = tile;
+            _board.PropertyChanged += OnViewModelProperyChanged;
         }
+
+        private void OnViewModelProperyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(e.PropertyName == nameof(GameViewModel.CurrentPlayer)) 
+            {
+                OnCanExecutedChanged();
+            }
+        }
+
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            (_board.CurrentPlayer, _board.NonCurrentPlayer) = (_board.NonCurrentPlayer, _board.CurrentPlayer);
         }
 
         public override bool CanExecute(object parameter)
