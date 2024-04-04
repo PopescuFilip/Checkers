@@ -27,7 +27,6 @@ namespace Checkers.Services
             }
 
             PickSpace(game, tileVM);
-
         }
 
         private static void PickSpace(GameViewModel game, TileViewModel tileVM)
@@ -44,11 +43,12 @@ namespace Checkers.Services
         }
         private static void SetAvailableTiles(GameViewModel game, TileViewModel tileVM)
         {
-            foreach (Position item in tileVM.GetAllPossibleMoves())
+            foreach (Position position in tileVM.GetAllPossibleMoves())
             {
-                TileViewModel tile = game.Board[item.X][item.Y];
+                TileViewModel tile = game.GetTile(position);
                 if (!tile.HasPiece)
                     tile.IsAvailable = true;
+
             }
         }
 
@@ -61,7 +61,7 @@ namespace Checkers.Services
 
         private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
-            tileVM.Piece = game.ExtractPickedPiece();
+            tileVM.Piece = game.GetTile(game.PickedPosition).ExtractPiece();
         }
 
     }

@@ -83,17 +83,15 @@ namespace Checkers.ViewModels
                 Board.Add(row);
             }
         }
+
+        public TileViewModel GetTile(Position position)
+        {
+            return Board[position.X][position.Y];
+        }
         public void PickPiece(Position pickedPosition)
         {
             PickedPosition = pickedPosition;
             HasPickedPiece = true;
         }
-
-        public Piece ExtractPickedPiece()
-        {
-            return Board[PickedPosition.X][PickedPosition.Y].ExtractPiece();
-        }
-
-
     }
 }

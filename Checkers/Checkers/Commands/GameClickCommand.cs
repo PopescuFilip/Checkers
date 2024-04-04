@@ -26,8 +26,7 @@ namespace Checkers.Commands
         {
             if(e.PropertyName == nameof(GameViewModel.CurrentPlayer) ||
                 e.PropertyName == nameof(GameViewModel.HasPickedPiece) ||
-                e.PropertyName == nameof(TileViewModel.IsAvailable) ||
-                e.PropertyName == nameof(TileViewModel.HasPiece)) 
+                e.PropertyName == nameof(TileViewModel.IsAvailable))
             {
                 OnCanExecutedChanged();
             }
@@ -42,12 +41,12 @@ namespace Checkers.Commands
         {
             if(_game.HasPickedPiece)
                 return (_tile.IsAvailable || IsCurrentPlayerPiece()) && base.CanExecute(parameter);
-            return _tile.HasPiece && IsCurrentPlayerPiece() && base.CanExecute(parameter);
+            return IsCurrentPlayerPiece() && base.CanExecute(parameter);
         }
 
         private bool IsCurrentPlayerPiece()
         {
-            return _tile.Piece.Color == _game.CurrentPlayer;
+            return _tile.PieceColor == _game.CurrentPlayer;
         }
     }
 }
