@@ -9,15 +9,17 @@ namespace Checkers.Services
 {
     public static class TileService
     {
+        private static readonly int ThirdWhiteRow = 2;
+        private static readonly int ThirdRedRow = 5;
         public static void InitPiece(Tile tile)
         {
-            if (tile.X >= 3 && tile.X <= 4 || tile.TileColor == Enums.Color.Black)
+            if (tile.X > ThirdWhiteRow && tile.X < ThirdRedRow || tile.TileColor == Enums.Color.Black)
             {
                 tile.Piece = new Piece();
                 return;
             }
                 
-            if (tile.X < 3)
+            if (tile.X <= ThirdWhiteRow)
             {
                 tile.Piece = new Piece(Enums.Color.White);
                 return;
