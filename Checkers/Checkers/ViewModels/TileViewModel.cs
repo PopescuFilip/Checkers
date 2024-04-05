@@ -1,5 +1,6 @@
 ﻿using Checkers.Commands;
 using Checkers.Models;
+using Checkers.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,7 @@ namespace Checkers.ViewModels
     public class TileViewModel : ViewModelBase
     {
         private readonly Tile _tile;
-        public bool HasPiece => _tile.HasPiece;
-        public bool IsAvailable
-        {
-            get => _tile.IsAvailable;
-            set
-            {
-                _tile.IsAvailable = value;
-                OnPropertyChanged(nameof(IsAvailable));
-            }
-        }
+        public Tile Tile { get { return _tile; } }
         public Piece Piece
         {
             get => _tile.Piece;
@@ -33,12 +25,6 @@ namespace Checkers.ViewModels
                 OnPropertyChanged(nameof(HasPiece)); 
             }
         }
-
-        public Enums.Color PieceColor
-        {
-            get => _tile.Piece.Color;
-        }
-
         public string Image
         {
             get => _tile.Image;
@@ -48,6 +34,27 @@ namespace Checkers.ViewModels
                 OnPropertyChanged(nameof(Image));
             }
         }
+        public bool HasPiece 
+        { 
+            get => _tile.HasPiece; 
+        }
+        
+        private bool _isAvailable;
+        public bool IsAvailable
+        {
+            get { return _isAvailable; }
+            set
+            {
+                _isAvailable = value;
+                OnPropertyChanged(nameof(IsAvailable));
+            }
+        }
+
+        public Enums.Color PieceColor
+        {
+            get => _tile.Piece.Color;
+        }
+
 
         public Position Position
         {
@@ -65,10 +72,6 @@ namespace Checkers.ViewModels
             Piece piece = new Piece();
             (Piece, piece) = (piece, Piece);
             return piece;
-        }
-        public List<Position> GetAllPossibleMoves()
-        {
-            return _tile.GetAllPossibleMoves();
         }
     }
 }

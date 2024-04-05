@@ -13,7 +13,7 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Rectangle Visibility="{Binding WhiteTurn}" Fill="Red" Width="400"/>
+            <TextBlock Text="White's turn"  Visibility="{Binding WhiteTurn}" Background="Red" Width="400" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24"/>
         </Grid>
         <Grid Grid.Row="1">
             <ItemsControl Name="grid" ItemsSource="{Binding Board}" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -52,7 +52,7 @@
             </ItemsControl>
         </Grid>
         <Grid Grid.Row="2">
-            <Rectangle Visibility="{Binding RedTurn}" Fill="Red" Width="400"/>
+            <TextBlock Text="Red's turn" Visibility="{Binding RedTurn}" Background="Red" Width="400" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="24"/>
         </Grid>
         
     </Grid>

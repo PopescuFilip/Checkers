@@ -38,16 +38,16 @@ namespace Checkers.Services
         }
         private static void PickPiece(GameViewModel game, TileViewModel tileVM)
         {
-            SetAvailableTiles(game, tileVM);
+            SetAvailableTiles(game, tileVM.Tile);
             game.PickPiece(tileVM.Position);
         }
-        private static void SetAvailableTiles(GameViewModel game, TileViewModel tileVM)
+        private static void SetAvailableTiles(GameViewModel game, Tile tile)
         {
-            foreach (Position position in tileVM.GetAllPossibleMoves())
+            foreach (Position position in TileService.GetAllPossibleMoves(tile))
             {
-                TileViewModel tile = game.GetTile(position);
-                if (!tile.HasPiece)
-                    tile.IsAvailable = true;
+                TileViewModel tileVM = game.GetTile(position);
+                if (!tileVM.HasPiece)
+                    tileVM.IsAvailable = true;
 
             }
         }

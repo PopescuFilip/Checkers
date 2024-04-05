@@ -65,6 +65,7 @@
     <Compile Include="Models\Tile.cs" />
     <Compile Include="Services\GameService.cs" />
     <Compile Include="Services\ImagePickerService.cs" />
+    <Compile Include="Services\TileService.cs" />
     <Compile Include="Stores\NavigationStore.cs" />
     <Compile Include="ViewModels\TileViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
