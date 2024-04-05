@@ -1,4 +1,5 @@
 ﻿using Checkers.Commands;
+using Checkers.Enums;
 using Checkers.Models;
 using Checkers.Services;
 using System;
@@ -25,6 +26,16 @@ namespace Checkers.ViewModels
                 OnPropertyChanged(nameof(HasPiece)); 
             }
         }
+        public Enums.Type PieceType
+        {
+            get => _tile.PieceType;
+            set
+            {
+                _tile.PieceType = value;
+                OnPropertyChanged(nameof(Image));
+            }
+        }
+
         public string Image
         {
             get => _tile.Image;
@@ -54,7 +65,6 @@ namespace Checkers.ViewModels
         {
             get => _tile.Piece.Color;
         }
-
 
         public Position Position
         {

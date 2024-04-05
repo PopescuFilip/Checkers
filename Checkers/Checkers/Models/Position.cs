@@ -15,5 +15,10 @@ namespace Checkers.Models
             X = x;
             Y = y;
         }
+
+        public bool Equals(int x, int y)
+        {
+            return x == X && y == Y;
+        }
     }
 }

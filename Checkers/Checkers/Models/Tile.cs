@@ -21,6 +21,16 @@ namespace Checkers.Models
                 Image = ImagePickerService.GetImage(_piece);
             } 
         }
+
+        public Enums.Type PieceType
+        {
+            get { return _piece.Type; }
+            set 
+            {
+                _piece.Type = value;
+                Image = ImagePickerService.GetImage(_piece);
+            }
+        }
         public string Image {  get; set; }
         public Color TileColor { get; }
 

@@ -27,6 +27,15 @@ namespace Checkers.Services
             
             tile.Piece = new Piece(Enums.Color.Red);
         }
+
+        public static bool IsOnFinalRow(Tile tile)
+        {
+            if (tile.Piece.Color == Enums.Color.White)
+            {
+                return tile.Position.X == Board.Rows - 1;
+            }
+            return tile.Position.X == 0;
+        }
         public static List<Position> GetAllPossibleMoves(Tile tile)
         {
             if (tile.Piece.Type == Enums.Type.King)

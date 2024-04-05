@@ -62,6 +62,8 @@ namespace Checkers.Services
         private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
             tileVM.Piece = game.GetTile(game.PickedPosition).ExtractPiece();
+            if(TileService.IsOnFinalRow(tileVM.Tile))
+                tileVM.PieceType = Enums.Type.King;
         }
 
     }
