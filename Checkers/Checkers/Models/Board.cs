@@ -21,5 +21,11 @@ namespace Checkers.Models
                 for (int j = 0; j < Cols; j++)
                     BoardMatrix[i, j] = new Tile(i, j);
         }
+        public static bool Contains(Position position)
+        {
+            bool containsX = position.X < Rows && position.X >= 0;
+            bool containsY = position.Y < Cols && position.Y >= 0;
+            return containsX && containsY;
+        }
     }
 }

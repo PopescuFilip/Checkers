@@ -45,10 +45,7 @@ namespace Checkers.Services
         {
             foreach (Position position in TileService.GetAllPossibleMoves(tile))
             {
-                TileViewModel tileVM = game.GetTile(position);
-                if (!tileVM.HasPiece)
-                    tileVM.IsAvailable = true;
-
+                game.AddMove(tile.Position, position);
             }
         }
 
@@ -61,9 +58,7 @@ namespace Checkers.Services
 
         private static void MovePiece(GameViewModel game, TileViewModel tileVM)
         {
-            tileVM.Piece = game.GetTile(game.PickedPosition).ExtractPiece();
-            if(TileService.IsOnFinalRow(tileVM.Tile))
-                tileVM.PieceType = Enums.Type.King;
+            game.ApplyMove(tileVM);
         }
 
     }

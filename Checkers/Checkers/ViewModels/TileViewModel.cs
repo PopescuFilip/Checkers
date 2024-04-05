@@ -71,6 +71,17 @@ namespace Checkers.ViewModels
             get => _tile.Position;
         }
 
+        private Move _move;
+        public Move Move
+        {
+            get { return _move; }
+            set 
+            { 
+                _move = value;
+                IsAvailable = true;
+            }
+        }
+
         public ICommand GameClick { get; }
         public TileViewModel(GameViewModel board, Tile tile)
         {

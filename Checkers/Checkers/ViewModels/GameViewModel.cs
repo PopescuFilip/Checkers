@@ -51,8 +51,7 @@ namespace Checkers.ViewModels
             }
         }
 
-        public Position PickedPosition {  get; set; }
-
+        public Position PickedPiecePosition {  get; set; }
 
         public Visibility WhiteTurn
         {
@@ -83,14 +82,49 @@ namespace Checkers.ViewModels
                 Board.Add(row);
             }
         }
+        public void AddMove(Position initialPosition, Position finalPosition)
+        {
+            TileViewModel tileVM = GetTile(finalPosition);
+            Move newMove = new Move(initialPosition, finalPosition);
+            if (!tileVM.HasPiece)
+            {
+                tileVM.Move = newMove;
+                return;
+            }
+            if (tileVM.PieceColor == CurrentPlayer)
+                return;
+            Position nextPosition = newMove.Next();
+            if (!Models.Board.Contains(nextPosition))
+                return;
 
+            TileViewModel nextTile = GetTile(nextPosition); 
+            if(!nextTile.HasPiece)
+            {
+                newMove.AddCapture(nextPosition);
+                GetTile(nextPosition).Move = newMove;
+            }
+        }
+
+        public void ApplyMove(TileViewModel tileVM)
+        {
+            if(tileVM.Move.HasCaptured)
+            {
+                foreach (Position pos in tileVM.Move.Captured)
+                {
+                    GetTile(pos).ExtractPiece();
+                }
+            }
+            tileVM.Piece = GetTile(PickedPiecePosition).ExtractPiece();
+            if (TileService.IsOnFinalRow(tileVM.Tile))
+                tileVM.PieceType = Enums.Type.King;
+        }
         public TileViewModel GetTile(Position position)
         {
             return Board[position.X][position.Y];
         }
         public void PickPiece(Position pickedPosition)
         {
-            PickedPosition = pickedPosition;
+            PickedPiecePosition = pickedPosition;
             HasPickedPiece = true;
         }
     }
