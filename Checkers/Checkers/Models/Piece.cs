@@ -9,7 +9,7 @@ namespace Checkers.Models
 {
     public class Piece
     {
-        public Color Color { get; set; }
+        public Color Color { get; }
         public Enums.Type Type { get; set; }
         public Piece() 
         {

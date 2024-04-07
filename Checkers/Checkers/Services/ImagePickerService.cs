@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Checkers.Services
 {
-    public class ImagePickerService
+    public static class ImagePickerService
     {
         private const string DefaultPath = "/Checkers;component/Resources/";
         private const string BlackTile = "black.jpg";

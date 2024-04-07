@@ -9,7 +9,7 @@ using System.Windows.Automation.Peers;
 
 namespace Checkers.Services
 {
-    public class GameService
+    public static class GameService
     {
         public static void ProcessClick(GameViewModel game, TileViewModel tileVM)
         {

@@ -35,15 +35,9 @@ namespace Checkers.ViewModels
                 OnPropertyChanged(nameof(Image));
             }
         }
-
         public string Image
         {
             get => _tile.Image;
-            set 
-            { 
-                _tile.Image = value; 
-                OnPropertyChanged(nameof(Image));
-            }
         }
         public bool HasPiece 
         { 

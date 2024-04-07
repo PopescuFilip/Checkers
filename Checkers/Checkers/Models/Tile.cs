@@ -18,7 +18,7 @@ namespace Checkers.Models
             set 
             {  
                 _piece = value;
-                Image = ImagePickerService.GetImage(_piece);
+                _image = ImagePickerService.GetImage(_piece);
             } 
         }
 
@@ -28,10 +28,15 @@ namespace Checkers.Models
             set 
             {
                 _piece.Type = value;
-                Image = ImagePickerService.GetImage(_piece);
+                _image = ImagePickerService.GetImage(_piece);
             }
         }
-        public string Image {  get; set; }
+
+        private string _image;
+        public string Image 
+        {
+            get => _image; 
+        }
         public Color TileColor { get; }
 
         public bool HasPiece
@@ -50,7 +55,7 @@ namespace Checkers.Models
             TileColor = (x + y) % 2 == 0 ? Color.White : Color.Black;
             TileService.InitPiece(this);
 
-            Image = ImagePickerService.GetImage(this);
+            _image = ImagePickerService.GetImage(this);
         }
         
     }
