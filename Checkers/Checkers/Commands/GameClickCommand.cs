@@ -26,7 +26,8 @@ namespace Checkers.Commands
         {
             if(e.PropertyName == nameof(GameViewModel.CurrentPlayer) ||
                 e.PropertyName == nameof(GameViewModel.HasPickedPiece) ||
-                e.PropertyName == nameof(TileViewModel.IsAvailable))
+                e.PropertyName == nameof(TileViewModel.IsAvailable) ||
+                e.PropertyName == nameof(GameViewModel.HasCaptured))
             {
                 OnCanExecutedChanged();
             }
@@ -39,6 +40,8 @@ namespace Checkers.Commands
 
         public override bool CanExecute(object parameter)
         {
+            if(_game.HasCaptured)
+                return _tile.IsAvailable && base.CanExecute(parameter);
             if(_game.HasPickedPiece)
                 return (_tile.IsAvailable || IsCurrentPlayerPiece()) && base.CanExecute(parameter);
             return IsCurrentPlayerPiece() && base.CanExecute(parameter);

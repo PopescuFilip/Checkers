@@ -18,7 +18,7 @@ namespace Checkers.Services
                 PickPiece(game, tileVM);
                 return;
             }
-                
+
             if (tileVM.PieceColor == game.CurrentPlayer)
             {
                 ResetAvailability(game);
@@ -32,9 +32,16 @@ namespace Checkers.Services
         private static void PickSpace(GameViewModel game, TileViewModel tileVM)
         {
             ResetAvailability(game);
-            MovePiece(game, tileVM);
-            (game.CurrentPlayer, game.NonCurrentPlayer) = (game.NonCurrentPlayer, game.CurrentPlayer);
-            game.HasPickedPiece = false;
+            //MovePiece(game, tileVM);
+            game.ApplyMove(tileVM);
+
+            if (game.HasCaptured)
+            {
+                MultipleMoveLogic(game, tileVM);
+                return;
+            }
+
+            game.TurnChange();
         }
         private static void PickPiece(GameViewModel game, TileViewModel tileVM)
         {
@@ -43,10 +50,22 @@ namespace Checkers.Services
         }
         private static void SetAvailableTiles(GameViewModel game, Tile tile)
         {
+            if(!game.HasCaptured)
+            {
+                foreach (Position position in TileService.GetAllPossibleMoves(tile))
+                    game.AddMove(tile.Position, position);
+                return;
+            }
+
+            bool atLeastOneCaptureMove = false;
             foreach (Position position in TileService.GetAllPossibleMoves(tile))
             {
-                game.AddMove(tile.Position, position);
+                if(game.AddCaptureMove(tile.Position, position))
+                    atLeastOneCaptureMove = true;
             }
+
+            if(!atLeastOneCaptureMove)
+                game.TurnChange();
         }
 
         private static void ResetAvailability(GameViewModel game)
@@ -56,9 +75,10 @@ namespace Checkers.Services
                     tile.IsAvailable = false;
         }
 
-        private static void MovePiece(GameViewModel game, TileViewModel tileVM)
+        private static void MultipleMoveLogic(GameViewModel game, TileViewModel tileVM)
         {
-            game.ApplyMove(tileVM);
+            game.PickPiece(tileVM.Position);
+            SetAvailableTiles(game, tileVM.Tile);
         }
 
     }

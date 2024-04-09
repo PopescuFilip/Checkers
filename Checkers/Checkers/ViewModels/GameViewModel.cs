@@ -13,15 +13,15 @@ using System.Windows.Media;
 
 namespace Checkers.ViewModels
 {
-    public class GameViewModel: ViewModelBase
+    public class GameViewModel : ViewModelBase
     {
         public ObservableCollection<ObservableCollection<TileViewModel>> Board { get; set; }
         private Enums.Color _currentPlayer;
         public Enums.Color CurrentPlayer
         {
             get { return _currentPlayer; }
-            set 
-            { 
+            set
+            {
                 _currentPlayer = value;
                 OnPropertyChanged(nameof(CurrentPlayer));
                 OnPropertyChanged(nameof(WhiteTurn));
@@ -44,14 +44,25 @@ namespace Checkers.ViewModels
         public bool HasPickedPiece
         {
             get { return _hasPickedPiece; }
-            set 
-            { 
+            set
+            {
                 _hasPickedPiece = value;
                 OnPropertyChanged(nameof(HasPickedPiece));
             }
         }
 
-        public Position PickedPiecePosition {  get; set; }
+        private bool _hasCaptured;
+        public bool HasCaptured 
+        {
+            get { return _hasCaptured; } 
+            set
+            {
+                _hasCaptured = value;
+                OnPropertyChanged(nameof(HasCaptured));
+            }
+        }
+
+        public Position PickedPiecePosition { get; set; }
 
         public Visibility WhiteTurn
         {
@@ -62,11 +73,12 @@ namespace Checkers.ViewModels
         {
             get { return CurrentPlayer == Enums.Color.Red ? Visibility.Visible : Visibility.Hidden; }
         }
-        public GameViewModel() 
+        public GameViewModel()
         {
             CurrentPlayer = Enums.Color.Red;
             NonCurrentPlayer = Enums.Color.White;
             HasPickedPiece = false;
+            HasCaptured = false;
 
             InitBoard();
         }
@@ -93,22 +105,37 @@ namespace Checkers.ViewModels
             }
             if (tileVM.PieceColor == CurrentPlayer)
                 return;
-            Position nextPosition = newMove.Next();
+            AddCaptureMove(newMove);
+        }
+        private bool AddCaptureMove(Move move)
+        {
+            Position nextPosition = move.Next();
             if (!Models.Board.Contains(nextPosition))
-                return;
+                return false;
 
-            TileViewModel nextTile = GetTile(nextPosition); 
-            if(!nextTile.HasPiece)
-            {
-                newMove.AddCapture(nextPosition);
-                GetTile(nextPosition).Move = newMove;
-            }
+            TileViewModel nextTile = GetTile(nextPosition);
+            if (nextTile.HasPiece)
+                return false;
+
+            move.AddCapture(nextPosition);
+            GetTile(nextPosition).Move = move;
+            return true;
         }
 
+        public bool AddCaptureMove(Position initialPosition, Position finalPosition)
+        {
+            TileViewModel tileVM = GetTile(finalPosition);
+            Move newMove = new Move(initialPosition, finalPosition);
+            if (!tileVM.HasPiece || tileVM.PieceColor == CurrentPlayer)
+                return false;
+            return AddCaptureMove(newMove);
+
+        }
         public void ApplyMove(TileViewModel tileVM)
         {
             if(tileVM.Move.HasCaptured)
             {
+                HasCaptured = true;
                 foreach (Position pos in tileVM.Move.Captured)
                 {
                     GetTile(pos).ExtractPiece();
@@ -126,6 +153,13 @@ namespace Checkers.ViewModels
         {
             PickedPiecePosition = pickedPosition;
             HasPickedPiece = true;
+        }
+
+        public void TurnChange()
+        {
+            (CurrentPlayer, NonCurrentPlayer) = (NonCurrentPlayer, CurrentPlayer);
+            HasPickedPiece = false;
+            HasCaptured = false;
         }
     }
 }
