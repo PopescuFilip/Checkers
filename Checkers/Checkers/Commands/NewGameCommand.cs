@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Checkers.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,14 @@ namespace Checkers.Commands
 {
     public class NewGameCommand : CommandBase
     {
+        private GameViewModel _game;
+        public NewGameCommand(GameViewModel game) 
+        {
+            _game = game;
+        }
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            _game.Init();
         }
     }
 }

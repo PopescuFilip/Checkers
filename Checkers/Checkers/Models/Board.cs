@@ -11,15 +11,6 @@ namespace Checkers.Models
     {
         public const int Rows = 8;
         public const int Cols = 8;
-        public static Tile[,] BoardMatrix { get; }
-        static Board()
-        {
-            BoardMatrix = new Tile[Rows, Cols];
-
-            for (int i = 0; i < Rows; i++)
-                for (int j = 0; j < Cols; j++)
-                    BoardMatrix[i, j] = new Tile(i, j);
-        }
         public static bool Contains(Position position)
         {
             bool containsX = position.X < Rows && position.X >= 0;

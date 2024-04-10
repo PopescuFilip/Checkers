@@ -17,7 +17,16 @@ namespace Checkers.ViewModels
 {
     public class GameViewModel : ViewModelBase
     {
-        public ObservableCollection<ObservableCollection<TileViewModel>> Board { get; set; }
+        private ObservableCollection<ObservableCollection<TileViewModel>> _board;
+        public ObservableCollection<ObservableCollection<TileViewModel>> Board 
+        { 
+            get => _board;
+            set
+            {
+                _board = value;
+                OnPropertyChanged(nameof(Board));
+            }
+        }
         public ICommand NewGame { get; }
         public ICommand Open { get; }
         public ICommand ShowStatistics { get; }
@@ -106,6 +115,21 @@ namespace Checkers.ViewModels
 
         public GameViewModel()
         {
+            Init();
+            Open = new OpenGameCommand();
+            NewGame = new NewGameCommand(this);
+            ShowStatistics = new ShowStatisticsCommand();
+            About = new AboutCommand();
+        }
+
+        public void Init()
+        {
+            InitGame();
+            InitBoard();
+        }
+
+        private void InitGame()
+        {
             CurrentPlayer = Enums.Color.Red;
             NonCurrentPlayer = Enums.Color.White;
             HasPickedPiece = false;
@@ -113,13 +137,6 @@ namespace Checkers.ViewModels
             AllowMultipleJump = false;
             WhitePieces = TileService.noOfPieces;
             RedPieces = TileService.noOfPieces;
-
-            Open = new OpenGameCommand();
-            NewGame = new NewGameCommand();
-            ShowStatistics = new ShowStatisticsCommand();
-            About = new AboutCommand();
-
-            InitBoard();
         }
         private void InitBoard()
         {
@@ -129,7 +146,7 @@ namespace Checkers.ViewModels
             {
                 ObservableCollection<TileViewModel> row = new ObservableCollection<TileViewModel>();
                 for (int j = 0; j < Models.Board.Cols; j++)
-                    row.Add(new TileViewModel(this, Models.Board.BoardMatrix[i, j]));
+                    row.Add(new TileViewModel(this, new Tile(i, j)));
                 Board.Add(row);
             }
         }
@@ -195,14 +212,12 @@ namespace Checkers.ViewModels
             PickedPiecePosition = pickedPosition;
             HasPickedPiece = true;
         }
-
         public void TurnChange()
         {
             (CurrentPlayer, NonCurrentPlayer) = (NonCurrentPlayer, CurrentPlayer);
             HasPickedPiece = false;
             HasCaptured = false;
         }
-
         private void UpdateNoOfPieces(Enums.Color removedPieceColor)
         {
             if (removedPieceColor == Enums.Color.Red)
