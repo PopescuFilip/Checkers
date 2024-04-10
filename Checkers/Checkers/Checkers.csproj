@@ -55,8 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AboutCommand.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\GameClickCommand.cs" />
+    <Compile Include="Commands\NewGameCommand.cs" />
+    <Compile Include="Commands\OpenGameCommand.cs" />
+    <Compile Include="Commands\ShowStatisticsCommand.cs" />
     <Compile Include="Enums\Color.cs" />
     <Compile Include="Enums\Type.cs" />
     <Compile Include="Models\Board.cs" />
