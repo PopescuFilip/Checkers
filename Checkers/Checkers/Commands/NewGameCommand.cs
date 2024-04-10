@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Checkers.Commands
 {
-    internal class NewGameCommand
+    public class NewGameCommand : CommandBase
     {
+        public override void Execute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

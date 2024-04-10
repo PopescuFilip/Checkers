@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Checkers.Commands
 {
-    internal class ShowStatisticsCommand
+    public class ShowStatisticsCommand : CommandBase
     {
+        public override void Execute(object parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

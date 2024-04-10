@@ -1,4 +1,5 @@
-﻿using Checkers.Enums;
+﻿using Checkers.Commands;
+using Checkers.Enums;
 using Checkers.Models;
 using Checkers.Services;
 using System;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Checkers.ViewModels
@@ -16,6 +18,20 @@ namespace Checkers.ViewModels
     public class GameViewModel : ViewModelBase
     {
         public ObservableCollection<ObservableCollection<TileViewModel>> Board { get; set; }
+        public ICommand NewGame { get; }
+        public ICommand Open { get; }
+        public ICommand ShowStatistics { get; }
+        public ICommand About { get; }
+
+        private bool _allowMultipleJump;
+
+        public bool AllowMultipleJump
+        {
+            get { return _allowMultipleJump; }
+            set { _allowMultipleJump = value; OnPropertyChanged(nameof(AllowMultipleJump)); }
+        }
+
+
         private Enums.Color _currentPlayer;
         public Enums.Color CurrentPlayer
         {
@@ -94,8 +110,15 @@ namespace Checkers.ViewModels
             NonCurrentPlayer = Enums.Color.White;
             HasPickedPiece = false;
             HasCaptured = false;
+            AllowMultipleJump = false;
             WhitePieces = TileService.noOfPieces;
             RedPieces = TileService.noOfPieces;
+
+            Open = new OpenGameCommand();
+            NewGame = new NewGameCommand();
+            ShowStatistics = new ShowStatisticsCommand();
+            About = new AboutCommand();
+
             InitBoard();
         }
         private void InitBoard()
