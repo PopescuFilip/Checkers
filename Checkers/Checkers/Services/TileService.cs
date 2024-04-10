@@ -11,6 +11,7 @@ namespace Checkers.Services
     {
         private static readonly int ThirdWhiteRow = 2;
         private static readonly int ThirdRedRow = 5;
+        public const int noOfPieces = 12;
         public static void InitPiece(Tile tile)
         {
             if (tile.X > ThirdWhiteRow && tile.X < ThirdRedRow || tile.TileColor == Enums.Color.Black)

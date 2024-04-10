@@ -73,13 +73,29 @@ namespace Checkers.ViewModels
         {
             get { return CurrentPlayer == Enums.Color.Red ? Visibility.Visible : Visibility.Hidden; }
         }
+
+        private int _whitePieces;
+        public int WhitePieces
+        {
+            get { return _whitePieces; }
+            set { _whitePieces = value; OnPropertyChanged(nameof(WhitePieces)); }
+        }
+
+        private int _redPieces;
+        public int RedPieces
+        {
+            get { return _redPieces; }
+            set { _redPieces = value; OnPropertyChanged(nameof(RedPieces)); }
+        }
+
         public GameViewModel()
         {
             CurrentPlayer = Enums.Color.Red;
             NonCurrentPlayer = Enums.Color.White;
             HasPickedPiece = false;
             HasCaptured = false;
-
+            WhitePieces = TileService.noOfPieces;
+            RedPieces = TileService.noOfPieces;
             InitBoard();
         }
         private void InitBoard()
@@ -138,7 +154,9 @@ namespace Checkers.ViewModels
                 HasCaptured = true;
                 foreach (Position pos in tileVM.Move.Captured)
                 {
-                    GetTile(pos).ExtractPiece();
+                    TileViewModel tile = GetTile(pos);
+                    UpdateNoOfPieces(tile.PieceColor);
+                    tile.ExtractPiece();
                 }
             }
             tileVM.Piece = GetTile(PickedPiecePosition).ExtractPiece();
@@ -160,6 +178,20 @@ namespace Checkers.ViewModels
             (CurrentPlayer, NonCurrentPlayer) = (NonCurrentPlayer, CurrentPlayer);
             HasPickedPiece = false;
             HasCaptured = false;
+        }
+
+        private void UpdateNoOfPieces(Enums.Color removedPieceColor)
+        {
+            if (removedPieceColor == Enums.Color.Red)
+            {
+                RedPieces--;
+                if (RedPieces == 0)
+                    MessageBox.Show("White wins");
+                return;
+            }
+            WhitePieces--;
+            if (WhitePieces == 0)
+                MessageBox.Show("Red wins");
         }
     }
 }

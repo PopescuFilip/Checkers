@@ -11,7 +11,6 @@ namespace Checkers.Models
     {
         public const int Rows = 8;
         public const int Cols = 8;
-
         public static Tile[,] BoardMatrix { get; }
         static Board()
         {
