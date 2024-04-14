@@ -17,10 +17,10 @@ namespace Checkers.Models
             Type = Enums.Type.None;
         }
 
-        public Piece(Color pieceColor)
+        public Piece(Color pieceColor, Enums.Type pieceType = Enums.Type.Normal)
         {
             Color = pieceColor;
-            Type = Enums.Type.Normal;
+            Type = pieceType;
         }
     }
 }

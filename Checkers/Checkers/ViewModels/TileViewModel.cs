@@ -80,6 +80,7 @@ namespace Checkers.ViewModels
         public TileViewModel(GameViewModel board, Tile tile)
         {
             _tile = tile;
+            IsAvailable = false;
             GameClick = new GameClickCommand(board, this);
         }
         public Piece ExtractPiece()
@@ -87,6 +88,15 @@ namespace Checkers.ViewModels
             Piece piece = new Piece();
             (Piece, piece) = (piece, Piece);
             return piece;
+        }
+
+        public void Update(Enums.Color color, Enums.Type type) 
+        {
+            if (_tile.TileColor != Enums.Color.White)
+                return;
+            Piece = new Piece(color, type);
+            IsAvailable = false;
+            _move = null;
         }
     }
 }

@@ -1,9 +1,11 @@
-﻿using Checkers.Models;
+﻿using Checkers.Enums;
+using Checkers.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Checkers.Services
 {
@@ -36,6 +38,58 @@ namespace Checkers.Services
                 return tile.Position.X == Board.Rows - 1;
             }
             return tile.Position.X == 0;
+        }
+        public static string EnumToString(Enums.Color color)
+        {
+            switch (color)
+            {
+                case Enums.Color.White:
+                    return "white";
+                case Enums.Color.Black:
+                    return "black";
+                case Enums.Color.Red:
+                    return "red";
+                default:
+                    return "none";
+            }
+        }
+        public static string EnumToString(Enums.Type type)
+        {
+            switch (type)
+            {
+                case Enums.Type.Normal:
+                    return "normal";
+                case Enums.Type.King:
+                    return "king";
+                default:
+                    return "none";
+            }
+        }
+        public static Enums.Color StringToColor(string str)
+        {
+            switch (str)
+            {
+                case "white":
+                    return Enums.Color.White;
+                case "black":
+                    return Enums.Color.Black;
+                case "red":
+                    return Enums.Color.Red;
+                default:
+                    return Enums.Color.None;
+            }
+        }
+        public static Enums.Type StringToType(string str) 
+        {
+            switch (str)
+            {
+                case "normal":
+                    return Enums.Type.Normal;
+                case "king":
+                    return Enums.Type.King;
+                default:
+                    return Enums.Type.None;
+            }
         }
         public static List<Position> GetAllPossibleMoves(Tile tile)
         {

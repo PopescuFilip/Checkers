@@ -218,6 +218,10 @@ namespace Checkers.ViewModels
         {
             return Board[position.X][position.Y];
         }
+        public Tile GetTile(int i, int j)
+        {
+            return Board[i][j].Tile;
+        }
         public void PickPiece(Position pickedPosition)
         {
             PickedPiecePosition = pickedPosition;
@@ -241,6 +245,10 @@ namespace Checkers.ViewModels
             WhitePieces--;
             if (WhitePieces == 0)
                 MessageBox.Show("Red wins");
+        }
+        public void SetMultipleJump(bool allow)
+        {
+            _allowMultipleJump = allow;
         }
     }
 }
