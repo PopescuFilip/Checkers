@@ -32,12 +32,19 @@ namespace Checkers.ViewModels
         public ICommand ShowStatistics { get; }
         public ICommand About { get; }
 
+        private bool _multipleJumpCanChange;
         private bool _allowMultipleJump;
 
         public bool AllowMultipleJump
         {
             get { return _allowMultipleJump; }
-            set { _allowMultipleJump = value; OnPropertyChanged(nameof(AllowMultipleJump)); }
+            set 
+            {
+                if (!_multipleJumpCanChange)
+                    return;
+                _allowMultipleJump = value; 
+                OnPropertyChanged(nameof(AllowMultipleJump)); 
+            }
         }
 
 
@@ -132,6 +139,7 @@ namespace Checkers.ViewModels
         {
             CurrentPlayer = Enums.Color.Red;
             NonCurrentPlayer = Enums.Color.White;
+            _multipleJumpCanChange = true;
             HasPickedPiece = false;
             HasCaptured = false;
             AllowMultipleJump = false;
@@ -189,6 +197,7 @@ namespace Checkers.ViewModels
         }
         public void ApplyMove(TileViewModel tileVM)
         {
+            _multipleJumpCanChange = false;
             if(tileVM.Move.HasCaptured)
             {
                 HasCaptured = true;

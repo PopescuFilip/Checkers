@@ -35,7 +35,7 @@ namespace Checkers.Services
             //MovePiece(game, tileVM);
             game.ApplyMove(tileVM);
 
-            if (game.HasCaptured)
+            if (game.AllowMultipleJump && game.HasCaptured)
             {
                 MultipleMoveLogic(game, tileVM);
                 return;
