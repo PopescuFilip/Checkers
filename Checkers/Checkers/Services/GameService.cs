@@ -28,7 +28,6 @@ namespace Checkers.Services
 
             PickSpace(game, tileVM);
         }
-
         private static void PickSpace(GameViewModel game, TileViewModel tileVM)
         {
             ResetAvailability(game);

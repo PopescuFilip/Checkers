@@ -28,6 +28,7 @@ namespace Checkers.ViewModels
             }
         }
         public ICommand NewGame { get; }
+        public ICommand Save {  get; }
         public ICommand Open { get; }
         public ICommand ShowStatistics { get; }
         public ICommand About { get; }
@@ -123,7 +124,8 @@ namespace Checkers.ViewModels
         public GameViewModel()
         {
             Init();
-            Open = new OpenGameCommand();
+            Open = new OpenGameCommand(this);
+            Save = new SaveGameCommand(this);
             NewGame = new NewGameCommand(this);
             ShowStatistics = new ShowStatisticsCommand();
             About = new AboutCommand();

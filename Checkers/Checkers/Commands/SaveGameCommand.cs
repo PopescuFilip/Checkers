@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Checkers.Commands
 {
-    public class OpenGameCommand : CommandBase
+    public class SaveGameCommand : CommandBase
     {
         private readonly GameViewModel _game;
-        public OpenGameCommand(GameViewModel game) 
+        public SaveGameCommand(GameViewModel game) 
         {
             _game = game;
         }
         public override void Execute(object parameter)
         {
-            GameDownloaderService.DownloadTo(_game);
+            GameUploaderService.Upload(_game);
         }
     }
 }

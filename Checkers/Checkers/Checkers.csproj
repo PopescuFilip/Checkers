@@ -60,6 +60,7 @@
     <Compile Include="Commands\GameClickCommand.cs" />
     <Compile Include="Commands\NewGameCommand.cs" />
     <Compile Include="Commands\OpenGameCommand.cs" />
+    <Compile Include="Commands\SaveGameCommand.cs" />
     <Compile Include="Commands\ShowStatisticsCommand.cs" />
     <Compile Include="Enums\Color.cs" />
     <Compile Include="Enums\Type.cs" />

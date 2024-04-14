@@ -21,6 +21,7 @@
             <Menu>
                 <MenuItem Header="File">
                     <MenuItem Header="New Game" Command="{Binding NewGame}"/>
+                    <MenuItem Header="Save" Command="{Binding Save}"/>
                     <MenuItem Header="Open" Command="{Binding Open}"/>
                     <MenuItem>
                         <MenuItem.Header>
