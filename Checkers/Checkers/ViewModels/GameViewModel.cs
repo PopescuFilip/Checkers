@@ -236,15 +236,11 @@ namespace Checkers.ViewModels
         private void UpdateNoOfPieces(Enums.Color removedPieceColor)
         {
             if (removedPieceColor == Enums.Color.Red)
-            {
                 RedPieces--;
-                if (RedPieces == 0)
-                    MessageBox.Show("White wins");
-                return;
-            }
-            WhitePieces--;
-            if (WhitePieces == 0)
-                MessageBox.Show("Red wins");
+            else
+                WhitePieces--;
+            if (WhitePieces == 0 || RedPieces == 0)
+                EndGameService.ProcessEndGame(this);
         }
         public void SetMultipleJump(bool allow)
         {
