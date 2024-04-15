@@ -127,16 +127,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\checker_piece_red_king.png" />
-    <Resource Include="Resources\checker_piece_white_king.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\checker_piece_red.jpg" />
-    <Resource Include="Resources\checker_piece_white.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\black.jpg" />
-    <Resource Include="Resources\white.jpg" />
+    <Resource Include="Resources\Images\black.jpg" />
+    <Resource Include="Resources\Images\checker_piece_red.jpg" />
+    <Resource Include="Resources\Images\checker_piece_red_king.png" />
+    <Resource Include="Resources\Images\checker_piece_white.jpg" />
+    <Resource Include="Resources\Images\checker_piece_white_king.png" />
+    <Resource Include="Resources\Images\white.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
