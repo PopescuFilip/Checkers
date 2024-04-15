@@ -10,7 +10,7 @@ namespace Checkers.Services
 {
     public static class ImagePickerService
     {
-        private const string DefaultPath = "/Checkers;component/Resources/";
+        private const string DefaultPath = "/Checkers;component/Resources/Images/";
         private const string BlackTile = "black.jpg";
         private const string WhiteTile = "white.jpg";
         private const string WhitePiece = "checker_piece_white.jpg";
