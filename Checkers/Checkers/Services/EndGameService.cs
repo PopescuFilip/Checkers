@@ -24,8 +24,6 @@ namespace Checkers.Services
                 MessageBox.Show("Red wins!!");
                 StatisticsService.Log(Enums.Color.Red, game.RedPieces);
             }
-
-            
             game.Init();
         }
     }

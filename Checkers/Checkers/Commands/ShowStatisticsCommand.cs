@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Checkers.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Checkers.Commands
 {
@@ -10,7 +12,7 @@ namespace Checkers.Commands
     {
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            MessageBox.Show(StatisticsService.GetStatistics());
         }
     }
 }

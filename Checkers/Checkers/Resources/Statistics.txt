@@ -1,2 +1,6 @@
 ﻿red
 6
+white
+7
+white
+4
