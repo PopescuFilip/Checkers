@@ -244,7 +244,9 @@ namespace Checkers.ViewModels
         }
         public void SetMultipleJump(bool allow)
         {
-            _allowMultipleJump = allow;
+            _multipleJumpCanChange = true;
+            AllowMultipleJump = allow;
+            _multipleJumpCanChange = false;
         }
     }
 }
