@@ -1,1 +1,10 @@
-﻿
+﻿This program simulates playing checkers;
+Two players (one with red pieces one with 
+white pieces) take turn moving pieces;
+The player with red pieces always makes
+the first move
+The pieces can move diagonally one space
+or, when possible they can jump over enemy
+pieces, capturing them;
+The game ends when one of the players doesn't
+have any remaining pieces.

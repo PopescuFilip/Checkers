@@ -4,3 +4,5 @@ white
 7
 white
 4
+red
+6
